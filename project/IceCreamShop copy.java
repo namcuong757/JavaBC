@@ -13,7 +13,7 @@ public class IceCreamShop {
 		System.out.println("Hello...What is your name?");
 		String name = scanner.nextLine();
 		System.out.println("Hello " + name + "! How are you today?" );
-		System.out.println("Are you ready to order" );
+		System.out.println("Are you ready to order?" );
 		int conti;
         String bill = "Ice Cream Shop\n"
                 + "Sl.no\tName\t\trate\tqty\tprice";
@@ -31,7 +31,7 @@ public class IceCreamShop {
             switch(choice) {
                 case 1:
                     System.out.println("Scoop Menu");
-                    System.out.println("Mango($2) Chilly($2) Taro($3) Strawberry($3)");
+                    System.out.println("1. Mango($2) \n2. Chilly($2) \n3. Taro($3) \n4. Strawberry($3)");
                     System.out.println("Enter your choice");
                     String scoop_choice = scanner.nextLine();
                     switch(scoop_choice) {
@@ -66,7 +66,7 @@ public class IceCreamShop {
                     break;
                 case 2:
                     System.out.println("Exquisite Menu ($5 for all)");
-                    System.out.println("Chocolate ChillyE TaroE StrawberryE");
+                    System.out.println("1. Chocolate \n2. Milk \n3. Sesame \n4. Vanilla");
                     System.out.println("Enter your choice");
                     String ex_choice = scanner.nextLine();
                     switch(ex_choice) {
@@ -76,20 +76,20 @@ public class IceCreamShop {
                             System.out.print("How many would you like? ");
                             qty = scanner.nextInt();
                             break;
-                        case "ChillyE":
-                            scoop_ex = "ChillyE";
+                        case "Milk":
+                            scoop_ex = "Milk";
                             rate = 5;
                             System.out.print("How many would you like? ");
                             qty = scanner.nextInt();
                             break;
-                        case "TaroE":
-                            scoop_ex = "TaroE";
+                        case "Sesame":
+                            scoop_ex = "Sesame";
                             rate = 5;
                             System.out.print("How many would you like? ");
                             qty = scanner.nextInt();
                             break;
-                        case "StrawberryE":
-                            scoop_ex = "StrawberryE";
+                        case "Vanilla":
+                            scoop_ex = "Vanilla";
                             rate = 5;
                             System.out.print("How many would you like? ");
                             qty = scanner.nextInt();
