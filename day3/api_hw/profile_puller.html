@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <nav class="page-nav">
+        <div class="container">
+            <a href="https://github.com/namcuong757">Github</a>
+            <a href="https://www.linkedin.com/in/nam-cuong-tran-7425a1224/">Linkedin</a>
+            <a href="https://www.facebook.com/tran.cuong.3591267/">Facebook</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <h1>Profile Puller Utility</h1>
+        <label>User Name</label>
+        <input type="text" id="userName" /> 
+        <button onclick="fetchUser()"> get User </button>
+
+        <div id="output">
+            <div class="left_split">
+                <img id="image" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="150" height="150" />
+            </div>
+            <div class="right_split">
+                <fieldset>
+                <legend>Infomation</legend>
+                <div id="followers"></div>
+                <table>
+                    <tr><td>login name</td><td>Image</td><td>URL</td></tr>
+                    <tr><td id="name"></td><td id="mini_image"></td><td id="url"></td></tr>
+                </table>
+                <!-- Build a table from java script  -->
+        
+
+            <script type="text/javascript">
+
+                function fetchUser(){
+                    let user = document.getElementById('userName').value;
+                    if(!user){
+                        alert(`User is blank or undefined !`);
+                    }
+                    else{
+
+                        // syntax ==> promise in java script ?
+                        // what it does     
+                        fetch(`https://api.github.com/users/${user}`)
+                        .then(response=>response.json())
+                        .then(json=>{
+                            document.getElementById('followers').innerHTML=`<span>followers : ${json.followers}</span>`  
+                            document.getElementById('image').removeAttribute("src")
+                            document.getElementById('image').setAttribute("src",json.avatar_url)
+                            document.getElementById('name').innerHTML=`${json.login}`;
+                            document.getElementById('mini_image').innerHTML=` <img id="image" src="${json.avatar_url}" width="50" height="50" /> `;
+                            document.getElementById('url').innerHTML=`${json.url}`;
+                            fetch(`https://api.github.com/users/${user}/followers`)
+                            .then(response=>response.json())
+                            .then(json=>{
+                            // we will build the table !
+                                json.forEach(follower=>{
+                                    const row = document.createElement('tr');
+                                    const follower_name = document.createElement('td');
+                                    const follower_avatar = document.createElement('td');
+                                    const follower_link = document.createElement('td');
+
+                                    follower_name.textContent = follower.login;
+                                    follower_avatar.innerHTML = `<img src="${follower.avatar_url}" alt="Profile Picture" style="width: 50px;">`;
+                                    follower_link.innerHTML = `${follower.html_url}`;
+                                    
+                                    row.appendChild(follower_name);
+                                    row.appendChild(follower_avatar);
+                                    row.appendChild(follower_link);
+
+                                    document.querySelector("table").appendChild(row);
+                                });
+                            })
+                            .catch(err=> console.log(err))
+                        })
+                        .catch(err=> console.log(err))
+                    }
+            
+                }
+            </script>
+            </fieldset>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

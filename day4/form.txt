@@ -1,0 +1,70 @@
+
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <h1>INPUT</h1>
+    <form id="myForm" onsubmit="validateForm(event)">
+        <input type="text" id="fname" placeholder="First Name" required>
+        <input type="text" id="lname" placeholder="Last Name" required>
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="text" id="phone" placeholder="Phone Number" required>
+        <select id="department" required>
+            <option value="Technical">Technical</option>
+            <option value="Finance">Finance</option>
+            <option value="Sale">Sale</option>
+            <option value="Marketing">Marketing</option>
+        </select>
+        <input type="text" id="job_title" placeholder="Job Title" required>
+        <input type="submit" value="Save">
+    </form>
+    <h1>OUTPUT</h1>
+    <table id="table">
+        <tr>
+            <td>First Name</td>
+            <td>Last Name</td>
+            <td>Email</td>
+            <td>Phone Number</td>
+            <td>Department</td>
+            <td>Job Title</td>
+        </tr>
+    </table>
+    <script>
+        function validateForm(event) {
+            event.preventDefault(); 
+    
+            if (document.getElementById("myForm").checkValidity()) {
+                alert("Form submitted successfully");
+                const row = document.createElement('tr');
+                const fname = document.createElement('td');
+                const lname = document.createElement('td');
+                const email = document.createElement('td');
+                const phone = document.createElement('td');
+                const department = document.createElement('td');
+                const job_title = document.createElement('td');
+
+                fname.textContent = document.getElementById('fname').value;
+                lname.textContent = document.getElementById('lname').value;
+                email.textContent = document.getElementById('email').value;
+                phone.textContent = document.getElementById('phone').value;
+                department.textContent = document.getElementById('department').value;
+                job_title.textContent = document.getElementById('job_title').value;
+
+                row.appendChild(fname);
+                row.appendChild(lname);
+                row.appendChild(email);
+                row.appendChild(phone);
+                row.appendChild(department);
+                row.appendChild(job_title);
+
+                document.getElementById("table").appendChild(row);
+            } 
+            else {
+                alert("Please fill in all required fields correctly");
+            }
+        }
+    </script>
+</body>
+</html>
